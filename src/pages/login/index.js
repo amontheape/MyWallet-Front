@@ -20,8 +20,11 @@ function Login() {
         setUser(data);
         setIsLoginLoading(false);
         navigate('/home');
-      } )
-      .catch( (err) => console.log(err) );
+      })
+      .catch( (err) =>{
+        console.log(err);
+        setIsLoginLoading(false);
+      });
   }
 
   return (
@@ -48,12 +51,11 @@ function Login() {
 
 
         <SubmitButton type='submit' disabled={isLoginLoading}>
-          {/* {isLoginLoading ? (<ThreeDots
+          {isLoginLoading ? (<ThreeDots
             color='white'
             height={14}
             width={52}
-          />) : 'Entrar'} */}
-          Entrar
+          />) : 'Entrar'}
         </SubmitButton>
       </Form>
 

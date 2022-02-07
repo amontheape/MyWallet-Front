@@ -15,10 +15,13 @@ function Register() {
 
     axios.post('http://localhost:5000/register', { name, email, password })
       .then(() => {
-        navigate('/home');
+        navigate('/login');
         setIsSignUpLoading(false);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        setIsSignUpLoading(false);
+        console.log(err); 
+      });
   }
 
   return (
@@ -66,12 +69,11 @@ function Register() {
 
 
         <SubmitButton type='submit' disabled={isSignUpLoading}> 
-          {/* {isLoginLoading ? (<ThreeDots
+          {isSignUpLoading ? (<ThreeDots
             color='white'
             height={14}
             width={52}
-          />) : 'Cadastrar'} */}
-          Cadastrar
+          />) : 'Cadastrar'}
         </SubmitButton>
       </Form>
 

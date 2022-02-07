@@ -2,15 +2,14 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/authContext";
-import  Entrie  from '../../components/Entrie';
-import { Wrapper, Header, History, Balance, Container, EntryButton, Warning } from '../../style/style';
+import  Entry  from '../../components/Entry';
+import { Wrapper, Header, History, Balance, Container, EntryButton, Wallet, Warning } from '../../style/style';
 
 
 function Home() {
   const { user, setUser } = useContext(AuthContext);
   const [ history, setHistory ] = useState([]);
-  const [ balance, setBalance ] = useState(0);
-  const [ hasBalance, setHasBalance ] = useState(false); 
+  const [ balance, setBalance ] = useState();
   const navigate = useNavigate();
 
   function getUserHistory() {
@@ -20,18 +19,10 @@ function Home() {
       }
     })
     .then( ({data}) => {
-      setHistory(data);
+      setHistory(data.history);
+      setBalance(data.balance);
     })
     .catch( (err) => console.log(err) );
-  }
-
-  function calcBalance() {
-    if (history) {
-     let sum = 0;
-     history.forEach( entrie => sum+= parseFloat(entrie.value) );
-     setHasBalance(true);
-     setBalance(sum); 
-    }  
   }
 
   function handleLogOut() {
@@ -41,32 +32,33 @@ function Home() {
 
   useEffect(() => {
     getUserHistory();
-    calcBalance();
   },[])
 
   return (
     <>
       <Wrapper>
-        <Header>{`Olá, ${user.name}`}</Header>
-        <ion-icon name="exit-outline" onClick={handleLogOut}></ion-icon>
+        <Header>{`Olá, ${user?.name}`}</Header>
+        <ion-icon name="exit-outline" onClick={() => handleLogOut()}></ion-icon>
       </Wrapper>
-      <History>
-        {
-          history 
-            ? history.map( (entrie) => ( <Entrie {...entrie} /> )) 
-            : <Warning>Não há registros de entrada ou saída</Warning>
-        }
-        <Balance hasBalance={hasBalance} value={balance}>
+      <Wallet>
+        <History center={history.length === 0}>
+          {
+            history.length === 0  
+              ? <Warning>Não há registros de entrada ou saída</Warning>
+              : history?.map( entry => ( <Entry {...entry} /> )) 
+          }
+        </History>
+        <Balance balance={balance} hidden={history.length === 0}>
           <p>SALDO</p>
           <span>{balance}</span>
         </Balance>
-      </History>
+      </Wallet>
       <Container>
-        <EntryButton onClick={navigate('/entrada')}>
+        <EntryButton onClick={() => navigate('/entrada')}>
           <ion-icon name="add-circle-outline"></ion-icon>
           <h2>Nova<br/>entrada</h2>
         </EntryButton>
-        <EntryButton onClick={navigate('/saida')}>
+        <EntryButton onClick={() => navigate('/saida')}>
           <ion-icon name="remove-circle-outline"></ion-icon>
           <h2>Nova<br/>saída</h2>
         </EntryButton>

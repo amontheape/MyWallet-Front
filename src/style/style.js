@@ -54,6 +54,10 @@ const Input = styled.input`
   }
 `
 const SubmitButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   width: 326px;
   height: 58px;
   background-color: #A328D6;
@@ -86,9 +90,18 @@ const StyledLink = styled(Link)`
 const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
+
+  width: calc(100vw - 50px);
+  margin-bottom: 22px;
+
+  & >header {
+    margin-bottom: 0;
+  }
 
   & >ion-icon {
     font-size: 24px;
+    color: #fff;
   }
 `
 
@@ -99,19 +112,42 @@ const Header = styled.header`
   line-height: 30px;
   text-align: left;
   color: #fff;
+
+  width: 326px;
+  margin-bottom: 40px;
 `
 
 const History = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: ${({ center }) => center ? 'center' : 'flex-start'};
+  align-items: ${({center}) => center && 'center'};
+
   background-color: #fff;
   border-radius: 5px;
   border: none;
+  overflow-y: scroll;
 
-  margin: 0 25px 13px;
+  height: 446px;
+  width: calc(100vw - 50px);
   padding: 12px;
 `
 const Balance = styled.div`
-  display: ${({balance}) => balance ? 'flex' : 'none'};
+  display: ${({hidden}) => hidden ? 'none' : 'flex'};
   justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 1;
+
+  height: 50px;
+  padding: 16px 24px;
+  border-radius: 5px;
+  border: none;
+  background-color: #fff;
+
   font-weight: 700;
   font-size: 17px;
   line-height: 20px;
@@ -120,13 +156,14 @@ const Balance = styled.div`
   & >span {
     font-weight: 400;
     text-align: right;
-    color: ${ ({value}) => value >= 0 ? '#03AC00' : '#C70000'};
+    color: ${ ({balance}) => parseFloat(balance) >= 0 ? '#03AC00' : '#C70000'};
   }
 `
 
-const EntrieTile = styled.div`
+const EntryTile = styled.div`
   display: flex;
   justify-content: flex-start;
+  width: 100%;
 
   font-weight: 400;
   font-style: normal;
@@ -136,12 +173,14 @@ const EntrieTile = styled.div`
   margin-bottom: 15px;
 
   & >span {
+    width: 10%;
     text-align: left;
     color: #c6c6c6;
   }
   
   .inner {
     display: flex;
+    width: 100%;
     justify-content: space-between;
   }
   
@@ -152,14 +191,24 @@ const EntrieTile = styled.div`
 
   .inner >:last-child {
     text-align: right;
-    color: ${ ({value}) => parseFloat(value) >= 0 ? '#03AC00' : '#C70000'};
+    color: ${ ({type}) => type === 'income' ? '#03AC00' : '#C70000'};
   }
 `
 
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
-  margin: 0 25px;
+  gap: 15px;
+
+  width: calc(100vw - 50px);
+  margin: 15px 25px;
+`
+
+const Wallet = styled.div`
+  display: flex;
+  position: relative;
+  width: calc(100vw - 50px);
+  height: 446px;
 `
 
 const Warning = styled.div`
@@ -167,21 +216,33 @@ const Warning = styled.div`
   justify-content: center;
   align-items: center;
 
+  width: 60%;
+
   font-size: 20px;
   line-height: 24px;
   color: #868686;
+  text-align: center;
 `
 
 const EntryButton = styled.button`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+
   height: 115px;
+  width: 100%;
   padding: 10px;
+
+  border: none;
+  border-radius: 5px;
+  background-color: #A328D6;
 
   font-weight: 700;
   font-style: normal;
   font-size: 17px;
   line-height: 20px;
+  text-align: left;
+  color: #fff;
 
   & >ion-icon{
     font-size: 25px;
@@ -198,8 +259,9 @@ export {
   Header,
   History,
   Balance,
-  EntrieTile,
+  EntryTile,
   Container,
+  Wallet,
   Warning,
   EntryButton 
 }
