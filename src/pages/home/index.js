@@ -62,11 +62,11 @@ function Home() {
         </Balance>
       </History>
       <Container>
-        <EntryButton>
+        <EntryButton onClick={navigate('/entrada')}>
           <ion-icon name="add-circle-outline"></ion-icon>
           <h2>Nova<br/>entrada</h2>
         </EntryButton>
-        <EntryButton>
+        <EntryButton onClick={navigate('/saida')}>
           <ion-icon name="remove-circle-outline"></ion-icon>
           <h2>Nova<br/>saída</h2>
         </EntryButton>
