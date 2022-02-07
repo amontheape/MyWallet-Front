@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+/*---Common---*/
+
 const Title = styled.h1`
   font-family: 'Saira Stencil One', cursive;
   font-weight: 400;
@@ -79,10 +81,125 @@ const StyledLink = styled(Link)`
   text-decoration: none;
 `
 
+/*---Home---*/
+
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  & >ion-icon {
+    font-size: 24px;
+  }
+`
+
+const Header = styled.header`
+  font-weight: 700;
+  font-style: normal;
+  font-size: 26px;
+  line-height: 30px;
+  text-align: left;
+  color: #fff;
+`
+
+const History = styled.div`
+  background-color: #fff;
+  border-radius: 5px;
+  border: none;
+
+  margin: 0 25px 13px;
+  padding: 12px;
+`
+const Balance = styled.div`
+  display: ${({balance}) => balance ? 'flex' : 'none'};
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 20px;
+  text-align: left;
+
+  & >span {
+    font-weight: 400;
+    text-align: right;
+    color: ${ ({value}) => value >= 0 ? '#03AC00' : '#C70000'};
+  }
+`
+
+const EntrieTile = styled.div`
+  display: flex;
+  justify-content: flex-start;
+
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 19px;
+
+  margin-bottom: 15px;
+
+  & >span {
+    text-align: left;
+    color: #c6c6c6;
+  }
+  
+  .inner {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .inner >p {
+    text-align: left;
+    color: #000;
+  }
+
+  .inner >:last-child {
+    text-align: right;
+    color: ${ ({value}) => parseFloat(value) >= 0 ? '#03AC00' : '#C70000'};
+  }
+`
+
+const Container = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: 0 25px;
+`
+
+const Warning = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 20px;
+  line-height: 24px;
+  color: #868686;
+`
+
+const EntryButton = styled.button`
+  display: flex;
+  flex-direction: column;
+  height: 115px;
+  padding: 10px;
+
+  font-weight: 700;
+  font-style: normal;
+  font-size: 17px;
+  line-height: 20px;
+
+  & >ion-icon{
+    font-size: 25px;
+  }
+`
+
 export {
   Title,
   Form,
   Input,
   SubmitButton,
-  StyledLink 
+  StyledLink,
+  Wrapper,
+  Header,
+  History,
+  Balance,
+  EntrieTile,
+  Container,
+  Warning,
+  EntryButton 
 }
