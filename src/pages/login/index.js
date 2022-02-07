@@ -47,7 +47,7 @@ function Login() {
         {errors.password && <p>{errors.password.message}</p>}
 
 
-        <SubmitButton type='submit'>
+        <SubmitButton type='submit' disabled={isLoginLoading}>
           {/* {isLoginLoading ? (<ThreeDots
             color='white'
             height={14}

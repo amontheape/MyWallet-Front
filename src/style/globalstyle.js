@@ -2,8 +2,8 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
   :root {
-    --darkerPurple : #8C11BE;
-    --ligtherPurple : #A328D6;
+    --darkerPurple: #8C11BE;
+    --ligtherPurple: #A328D6;
     --generalFont: 'Raleway', sans-serif;
   }
 

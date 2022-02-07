@@ -54,12 +54,12 @@ const Input = styled.input`
 const SubmitButton = styled.button`
   width: 326px;
   height: 58px;
-  background-color: var(--lighterPurple);
-  border: 1px solid var(--lighterPurple);
+  background-color: #A328D6;
+  border: none;
   border-radius: 5px;
   color: #fff;
   font-style: normal;
-  font-weight: normal;
+  font-weight: 700;
   font-size: 20px;
   line-height: 23px;
   text-align: center;
@@ -71,7 +71,7 @@ const SubmitButton = styled.button`
 
 const StyledLink = styled(Link)`
   font-style: normal;
-  font-weight: normal;
+  font-weight: 700;
   font-size: 15px;
   line-height: 18px;
   text-align: center;

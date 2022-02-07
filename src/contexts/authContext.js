@@ -15,7 +15,7 @@ export default function AuthProvider( {children} ) {
     } else {
       navigate('/login');
     }
-  })
+  }, [])
 
   return (
     <AuthContext.Provider
