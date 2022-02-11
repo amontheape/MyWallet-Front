@@ -13,7 +13,7 @@ function Home() {
   const navigate = useNavigate();
 
   function getUserHistory() {
-    axios.get('http://localhost:5000/history', {
+    axios.get('https://mywallettracker.herokuapp.com/history', {
       headers: {
         Authorization: `Bearer ${user?.token}`
       }

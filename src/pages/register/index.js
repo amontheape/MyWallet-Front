@@ -13,7 +13,7 @@ function Register() {
   function handleSignUp({ name, email, password }) {
     setIsSignUpLoading(true);
 
-    axios.post('http://localhost:5000/register', { name, email, password })
+    axios.post('https://mywallettracker.herokuapp.com/register', { name, email, password })
       .then(() => {
         navigate('/login');
         setIsSignUpLoading(false);

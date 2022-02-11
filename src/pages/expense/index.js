@@ -15,7 +15,7 @@ function Expense() {
 
   function handleEntry({ price, description }) {
     setIsSending(true);
-    axios.post('http://localhost:5000/expense',
+    axios.post('https://mywallettracker.herokuapp.com/expense',
       { price, description, type: 'expense' },
       {
         headers: {

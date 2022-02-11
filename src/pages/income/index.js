@@ -15,7 +15,7 @@ function Income() {
 
   function handleEntry({price, description}) {
     setIsSending(true);
-    axios.post('http://localhost:5000/income', 
+    axios.post('https://mywallettracker.herokuapp.com/income', 
       { price, description, type: 'income'},
       { headers: {
         Authorization: `Bearer ${user.token}`
